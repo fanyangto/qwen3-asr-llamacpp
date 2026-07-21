@@ -1,0 +1,43 @@
+networks:
+  asr-net:
+    driver: bridge
+
+services:
+  asr:
+    image: ghcr.io/ggml-org/llama.cpp:server
+    container_name: qwen3-asr
+    restart: unless-stopped
+    networks:
+      - asr-net
+    volumes:
+      - llama-cache:/root/.cache/llama.cpp
+    command:
+      - -hf
+      - ggml-org/Qwen3-ASR-0.6B-GGUF:Q8_0
+      - --port
+      - "8000"
+      - --host
+      - "0.0.0.0"
+      - -t
+      - "4"
+      - -ngl
+      - "0"
+      - -c #small context for asr
+      - "512"
+
+  proxy:
+    build:
+      context: ./proxy
+    container_name: qwen3-asr-proxy
+    restart: unless-stopped
+    networks:
+      - asr-net
+    ports:
+      - "8001:8000"
+    environment:
+      - LLAMA_HOST=http://asr:8000
+    depends_on:
+      - asr
+
+volumes:
+  llama-cache:
