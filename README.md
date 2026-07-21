@@ -4,6 +4,11 @@ Fast CPU-based speech-to-text using [Qwen3-ASR-0.6B](https://huggingface.co/Qwen
 
 ~0.5s for a 6s clip (12× real-time) on CPU. ~350 MB memory footprint.
 
+Why you need it ? 
+- It's so much faster and more accurate then the Hermes agent's builtin whisper base. 
+- It doesn't require you to have GPU. Runs on CPU is fast enough. It handles multiple languages: Chinese, English etc.
+- It can run inside a VM (no GPU passthrough requried) or even integrate with your hermes agent containers. 
+
 ## Quick Start
 
 ```bash
