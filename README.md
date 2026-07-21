@@ -23,17 +23,26 @@ Returns `{"text":"<transcript>"}` with the `language X<asr_text>` prefix strippe
 
 ### With Hermes Agent
 
-```json
-{
-  "stt": {
-    "provider": "openai",
-    "openai": {
-      "base_url": "http://localhost:8001",
-      "model": "qwen3-asr"
-    }
-  }
-}
+Add to your Hermes `config.yaml`:
+
+```yaml
+stt:
+  enabled: true
+  provider: openai
+  openai:
+    base_url: http://asr.home:8001/v1
+    api_key: sk-no-key-required
+    model: qwen3-asr
 ```
+
+And to `.env` (required for older Hermes versions where config `base_url` is ignored):
+
+```
+OPENAI_API_KEY=sk-no-key-required
+STT_OPENAI_BASE_URL=http://asr.home:8001/v1
+```
+
+The `/v1` suffix is required — the OpenAI SDK appends `audio/transcriptions` to the base URL. The `api_key` can be any dummy value since our proxy doesn't check it.
 
 ## Performance
 
