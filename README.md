@@ -15,9 +15,9 @@ Why do you need it ?
 ```bash
 docker compose up -d
 ```
-This will build the proxy container image on first. 
+This will build the proxy container image on the first run. 
 
-First transcription request downloads the Qwen-ASR-0.6B Q8 GGUF model (~700 MB) into a named volume — subsequent startups are instant.
+The first transcription request downloads the Qwen-ASR-0.6B Q8 GGUF model (~700 MB) into a named volume — subsequent startups are instant.
 
 ## Usage
 
