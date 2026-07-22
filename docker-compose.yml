@@ -11,19 +11,10 @@ services:
       - asr-net
     volumes:
       - llama-cache:/root/.cache/llama.cpp
-    command:
-      - -hf
-      - ggml-org/Qwen3-ASR-0.6B-GGUF:Q8_0
-      - --port
-      - "8000"
-      - --host
-      - "0.0.0.0"
-      - -t
-      - "4"
-      - -ngl
-      - "0"
-      - -c #small context for asr
-      - "512"
+    command: >
+      -hf ggml-org/Qwen3-ASR-0.6B-GGUF:Q8_0 --port 8000 --host 0.0.0.0
+      -t 4 -ngl 0 -c 512
+
 
   proxy:
     build:
