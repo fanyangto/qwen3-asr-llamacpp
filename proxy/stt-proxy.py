@@ -42,8 +42,8 @@ def _to_wav(data: bytes) -> bytes:
 
 
 _LANG_PREFIX_RE = re.compile(r"^language\s+\S+<asr_text>", re.IGNORECASE)
-_RETRIES = int(os.getenv("ASR_RETRIES", "5"))
-_RETRY_DELAY = float(os.getenv("ASR_RETRY_DELAY", "1.0"))
+_RETRIES = int(os.getenv("ASR_RETRIES", "8"))
+_RETRY_DELAY = float(os.getenv("ASR_RETRY_DELAY", "2.0"))
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("stt-proxy")

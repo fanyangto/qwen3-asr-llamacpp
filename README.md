@@ -2,20 +2,22 @@
 
 Fast CPU-based speech-to-text using [Qwen3-ASR-0.6B](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) via [llama.cpp](https://github.com/ggml-org/llama.cpp) GGUF, with an OpenAI-compatible proxy.
 
-~0.5s for a 6s clip (12× real-time) on CPU. ~350 MB memory footprint.
+~0.5s for a 6s clip (12× real-time) on CPU. ~700 MB memory footprint, auto unload when idle. 
 
-Why you need it ? 
-- It's so much faster and more accurate then the Hermes agent's builtin whisper base. 
+Why do you need it ? 
+- It's so much faster and more accurate then the Hermes agent's built-in whisper the base model.
 - It doesn't require you to have GPU. Runs on CPU is fast enough. It handles multiple languages: Chinese, English etc.
 - It can run inside a VM (no GPU passthrough requried) or even integrate with your hermes agent containers. 
+- You can have a private transcription service for sensitive audio content. 
 
 ## Quick Start
 
 ```bash
 docker compose up -d
 ```
+This will build the proxy container image on first. 
 
-First request downloads the GGUF model (~700 MB) into a named volume — subsequent startups are instant.
+First transcription request downloads the Qwen-ASR-0.6B Q8 GGUF model (~700 MB) into a named volume — subsequent startups are instant.
 
 ## Usage
 
@@ -67,6 +69,7 @@ llama.cpp:server (ASR) ◄── proxy (FastAPI) ◄── client
 ```
 
 The proxy strips the `language X<asr_text>` prefix from llama.cpp's output and returns standard OpenAI `{"text":"..."}` format.
+This makes the end point compatible with OpenAI ASR interface. 
 
 ## Files
 
