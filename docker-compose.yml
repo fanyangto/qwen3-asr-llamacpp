@@ -12,7 +12,7 @@ services:
     volumes:
       - llama-cache:/root/.cache/llama.cpp
     command: >
-      -hf ggml-org/Qwen3-ASR-0.6B-GGUF:Q8_0 --port 8000 --host 0.0.0.0
+      -hf ggml-org/Qwen3-ASR-0.6B-GGUF:Q8_0 --port 8000 --host 0.0.0.0 --sleep-idle-seconds 600
       -t 4 -ngl 0 -c 512
 
 

@@ -2,7 +2,7 @@
 
 Fast CPU-based speech-to-text using [Qwen3-ASR-0.6B](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) via [llama.cpp](https://github.com/ggml-org/llama.cpp) GGUF, with an OpenAI-compatible proxy.
 
-~0.5s for a 6s clip (12× real-time) on CPU. ~700 MB memory footprint, auto unload when idle. 
+~0.5s for a 6s clip (12× real-time) on CPU. ~500 MB memory footprint, auto unload when idle. 
 
 Why do you need it ? 
 - It's so much faster and more accurate then the Hermes agent's built-in whisper the base model.
